@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .converter {
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .converter input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .converter button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .converter button:hover {
+            background-color: #0056b3;
+        }
+        .temp-conv-form{
+            display: flex;
+            flex-direction: column;
+        }
+        .temp-conv-body-form label {
+            margin-top: 10px;
+        }
+        .temp-conv-body-form select {
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .temp-conv-body-form{
+            margin-bottom: 10px;
+        }
+        #value {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h2>Temperature Converter</h2>
+        <form id="temp-conv-form" action="/unit-convert/temp_conversion" method="POST">
+            <div class="temp-conv-body-form">
+                <label for="unitFrom">Convert From:</label>
+                <select name="unitFrom" id="unitFrom" required>
+                    <option value="°C">Celsius</option>
+                    <option value="°F">Fahrenheit</option>
+                    <option value="K">Kelvin</option>
+                </select>
+                <br>
+                <label for="value">Value:</label>
+                <input type="number" id="value" name="originalValue" required>
+                <br>
+                <label for="unitTo">Convert To:</label>
+                <select name="unitTo" id="unitTo">
+                    <option value="°C">Celsius</option>
+                    <option value="°F">Fahrenheit</option>
+                    <option value="K">Kelvin</option>
+                </select>
+            </div>
+            <button type="submit">Convert</button>
+        </form>
+
+        <div class="convert-result"></div>
+            {{#if result}} <!-- If there's a result, display it -->
+                <h2>Conversion Result</h2>
+                <p>{{value}} {{unitFrom}} = {{result}} {{unitTo}}</p>
+            {{/if}}
+        </div>
+        
+        <!-- Go home -->
+        <a href="/">Go Home</a>
+    </div>
+
+</body>
+</html>
